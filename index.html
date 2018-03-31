@@ -1,0 +1,24 @@
+<body>
+<div id=vis></div>
+
+<script src="//unpkg.com/candela/dist/candela.min.js"></script>
+
+<script>
+  (async function () {
+    const el = document.getElementById('vis');
+    const request = await fetch('glucose.json');
+    const data = await request.json();
+
+    const vis = new candela.components.LineChart(el, {
+      data,
+      x: 'time',
+      xType: 'temporal',
+      y: 'mg/dL',
+      showPoints: true,
+      width: 960,
+      height: 540
+    });
+    vis.render();
+  }());
+
+</script>
